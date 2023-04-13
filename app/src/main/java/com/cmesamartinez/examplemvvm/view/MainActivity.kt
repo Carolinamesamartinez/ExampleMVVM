@@ -15,6 +15,7 @@ class MainActivity : AppCompatActivity() {
         binding=ActivityMainBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+
         quoteViewModel.quoteModel.observe(this, Observer {currentQuote->
             binding.tvQuote.text=currentQuote.quote
             binding.tvAuthor.text=currentQuote.author
