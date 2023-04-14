@@ -6,6 +6,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
 class QuoteService {
+    // consumir ese retrofit gracias al retrofit -> y a la apiservice
+    //devuelve una lista tipo quotemodel ( de todas las quotes)
     private val retrofit = RetrofitHelper.getRetrofit()
     suspend fun getQuotes():List<QuoteModel>{
        return withContext(Dispatchers.IO){

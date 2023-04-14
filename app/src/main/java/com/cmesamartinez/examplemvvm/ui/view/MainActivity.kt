@@ -17,16 +17,19 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
+        // que se carge en memoria ( que nos devuelva cita) al abrir app
         quoteViewModel.onCreate()
 
-
+        //mira si hay cambios en el quotemodel
         quoteViewModel.quoteModel.observe(this, Observer {currentQuote->
             binding.tvQuote.text=currentQuote.quote
             binding.tvAuthor.text=currentQuote.author
         })
 
+        //mira si hay cambios en el quotemodel
         quoteViewModel.isLoading.observe(this, Observer { binding.progress.isVisible = it })
 
+        // que nos la devuelve aletoriamente
         binding.viewContainer.setOnClickListener {
             quoteViewModel.randomQuote()
         }
