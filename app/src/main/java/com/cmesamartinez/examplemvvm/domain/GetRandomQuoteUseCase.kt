@@ -2,16 +2,16 @@ package com.cmesamartinez.examplemvvm.domain
 
 import com.cmesamartinez.examplemvvm.data.QuoteRepository
 import com.cmesamartinez.examplemvvm.data.model.QuoteModel
-import com.cmesamartinez.examplemvvm.data.model.QuoteProvider
+import com.cmesamartinez.examplemvvm.domain.model.Quote
 import javax.inject.Inject
 
-class GetRandomQuoteUseCase @Inject constructor(private val quoteprovider:QuoteProvider){
+class GetRandomQuoteUseCase @Inject constructor(private val repository: QuoteRepository){
     // esta no es la manera ideal
    // private val repository = QuoteRepository()
     // otra vez como es un caso de uso PERO ESTA EN MEMORIA ya que vamos DIRECTOS al provider
-    operator fun invoke():QuoteModel?{
+    suspend operator fun invoke(): Quote?{
         //recogemos esas quote sdel provider
-        val quotes=quoteprovider .quotes
+        val quotes=repository.getAllQuotesFromDatabase()
         if(!quotes.isNullOrEmpty()){
             //generamos un random
             //returneamos
