@@ -6,16 +6,21 @@ import androidx.lifecycle.viewModelScope
 import com.cmesamartinez.examplemvvm.data.model.QuoteModel
 import com.cmesamartinez.examplemvvm.domain.GetQuotesUseCase
 import com.cmesamartinez.examplemvvm.domain.GetRandomQuoteUseCase
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class QuoteViewModel : ViewModel() {
+@HiltViewModel
+class QuoteViewModel @Inject constructor(
+    private val getQuotesUseCase: GetQuotesUseCase,
+    private val getRandomQuoteUseCase: GetRandomQuoteUseCase
+): ViewModel() {
     //el quotevidemodel es el intermediario entre la view y el model es decir entre la vusta y sus datos
     //por eso si pasa algo el mmutablelivedata porque notifica de esto
     val quoteModel= MutableLiveData<QuoteModel>()
     val isLoading= MutableLiveData<Boolean>()
     //dos variables para instanciar clases
-    var getQuotesUseCase = GetQuotesUseCase()
-    var getRandomQuoteUseCase= GetRandomQuoteUseCase()
+
     fun randomQuote(){
         // cambiamos el estado del progressbar para darle feedback al usuario
         isLoading.postValue(true)
