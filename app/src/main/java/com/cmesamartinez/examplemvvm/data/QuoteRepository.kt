@@ -32,5 +32,5 @@ class QuoteRepository @Inject constructor( private val api : QuoteService,privat
     }
 
    suspend  fun clearQuotes() {
-quotedao.deleteAllQuotes()    }
+quotedao.deleteAllQuotes()        }
 }
